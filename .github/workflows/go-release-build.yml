@@ -23,5 +23,4 @@ jobs:
            gox -os="linux" -arch="amd64 arm" -output="dist/ayame_{{.OS}}_{{.Arch}}"
            gox -os="darwin windows" -arch="amd64" -output="dist/ayame_{{.OS}}_{{.Arch}}"
            cd dist/ && gzip *
-      - uses: battila7/get-version-action@v2
       - run: ghr -t "${{ github.token }}" -u "${{ github.actor }}" -r "ayame" --replace "${{ env.TAG }}" dist/
