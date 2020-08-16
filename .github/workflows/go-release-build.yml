@@ -22,6 +22,5 @@ jobs:
            gox -os="darwin windows" -arch="amd64" -output="dist/ayame_{{.OS}}_{{.Arch}}"
            cd dist/ && gzip *
       - env:
-           USERNAME: ${{ github.actor }}
-           TAGNAME: ${{ github.ref }}
-        run: ghr -t "${{ secrets.GITHUB_TOKEN }}" -u "voluntas" -r "ayame" --replace "${TAGNAME}" dist/
+           TAGNAME: ${{ github.event.release.tag_name }}
+        run: ghr -t "${{ github.token }}" -u "${{ github.actor }}" -r "ayame" --replace "${TAGNAME}" dist/
