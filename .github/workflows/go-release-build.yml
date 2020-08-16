@@ -26,4 +26,4 @@ jobs:
            REPONAME: ${{ github.repository }}
            USERNAME: ${{ github.actor }}
            TAGNAME: ${{ github.ref }}
-        run: ghr -t $GITHUB_TOKEN -u $USERNAME -r $REPONAME --replace $TAGNAME dist/
+        run: ghr -t "${GITHUB_TOKEN}" -u "${USERNAME}" -r "${REPONAME}" --replace "${TAGNAME}" dist/
