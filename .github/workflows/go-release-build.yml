@@ -9,6 +9,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - run: |
+        echo "::set-env name=TAG::${GITHUB_REF#refs/tags/}"
       - uses: actions/setup-go@v2
         with:
           go-version: '1.15'
@@ -22,6 +24,4 @@ jobs:
            gox -os="darwin windows" -arch="amd64" -output="dist/ayame_{{.OS}}_{{.Arch}}"
            cd dist/ && gzip *
       - uses: battila7/get-version-action@v2
-      - env:
-           TAGNAME: ${{ steps.get_version.outputs.version }}
-        run: ghr -t "${{ github.token }}" -u "${{ github.actor }}" -r "ayame" --replace "${TAGNAME}" dist/
+      - run: ghr -t "${{ github.token }}" -u "${{ github.actor }}" -r "ayame" --replace "${{ env.TAG }}" dist/
