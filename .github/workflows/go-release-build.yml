@@ -1,9 +1,9 @@
 name: Release Build
 on:
   push:
-    branches:
-      - master         # Push events on master branch
-      - 'releases/*'   # Push events to branches matching refs/heads/releases/*
+    tags:
+      - *
+
 jobs:
   build:
     name: Build
